@@ -14,14 +14,35 @@ class Rectangle:
         # (width ** 2 + height ** 2) ** .5
         return (self.width ** 2 + self.height ** 2) ** .5
     def get_picture(self):
+        if self.width > 50 or self.height > 50:
+            return 'Too big for picture.'
+        picture_string = ''
         for _ in range(self.height):
-            print('*'*self.width + '\n')
+            picture_string += ('*'*self.width) + '\n'
+        return picture_string
     def get_amount_inside(self, other):
-        return self.get_area() / other.get_area()
+        return self.get_area() // other.get_area()
     def __str__(self):
-        # Should look like 'Rectangle(width=5, height=10)'
-        # Wonder if I could use {type(self)} for Rectangle
         return f'Rectangle(width={self.width}, height={self.height})'
 
 class Square(Rectangle):
-    pass
+    def __init__(self, width):
+        super().__init__(width, width)
+
+    def set_width(self, width):
+        self.width = width
+        self.height = width
+
+    def set_height(self, height):
+        self.width = height
+        self.height = height
+
+    def set_side(self, width):
+        self.width = width
+        self.height = width
+    
+    def __str__(self):
+        return f'Square(side={self.width})'
+
+
+
